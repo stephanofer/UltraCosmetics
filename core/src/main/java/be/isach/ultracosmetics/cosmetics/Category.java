@@ -32,6 +32,7 @@ public enum Category {
     MOUNTS("Mounts", "mountname", "mounts", "mou", true),
     MORPHS("Morphs", "morphname", "morphs", "mor", true, () -> Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")),
     HATS("Hats", "hatname", "hats", "h", true),
+    JOIN_ALERTS("Join-Alerts", "joinalertname", "joinalerts", "join", false),
     SUITS_HELMET(ArmorSlot.HELMET),
     SUITS_CHESTPLATE(ArmorSlot.CHESTPLATE),
     SUITS_LEGGINGS(ArmorSlot.LEGGINGS),

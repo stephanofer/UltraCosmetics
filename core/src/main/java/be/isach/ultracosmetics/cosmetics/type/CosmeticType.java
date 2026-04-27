@@ -114,6 +114,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         ParticleEffectType.register();
         PetType.register();
         HatType.register();
+        JoinAlertType.register();
         SuitCategory.register();
         for (SuitCategory sc : SuitCategory.values()) {
             sc.initializeSuitParts();

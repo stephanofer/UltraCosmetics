@@ -72,7 +72,7 @@ public class PlayerListener implements Listener {
         }
         UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
         if (SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
-            runWhenValid(event.getPlayer(), joinItemDelay, ultraPlayer::load);
+            runWhenValid(event.getPlayer(), joinItemDelay, ultraPlayer::loadOnJoin);
         }
 
         if (ultraCosmetics.getUpdateChecker() != null && ultraCosmetics.getUpdateChecker().isOutdated()) {
