@@ -9,6 +9,7 @@ import be.isach.ultracosmetics.cosmetics.Cosmetic;
 import be.isach.ultracosmetics.cosmetics.emotes.Emote;
 import be.isach.ultracosmetics.cosmetics.gadgets.Gadget;
 import be.isach.ultracosmetics.cosmetics.hats.Hat;
+import be.isach.ultracosmetics.cosmetics.joinalerts.JoinAlert;
 import be.isach.ultracosmetics.cosmetics.morphs.Morph;
 import be.isach.ultracosmetics.cosmetics.mounts.Mount;
 import be.isach.ultracosmetics.cosmetics.particleeffects.ParticleEffect;
@@ -17,6 +18,7 @@ import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.suits.Suit;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
+import be.isach.ultracosmetics.cosmetics.type.JoinAlertType;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.menu.MenuItemHandler;
 import be.isach.ultracosmetics.mysql.SqlCache;
@@ -88,6 +90,8 @@ public class UltraPlayer {
      * a cosmetic on purpose or because they are leaving.
      */
     private boolean preserveEquipped = false;
+    private boolean loadApplied = false;
+    private boolean joinAlertPlayed = false;
 
     /**
      * Stores the client brand string.
@@ -122,7 +126,41 @@ public class UltraPlayer {
             giveMenuItem();
         }
         if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
-            getProfile().onLoad(CosmeticsProfile::equip);
+            getProfile().onLoad(profile -> {
+                if (!loadApplied) {
+                    loadApplied = true;
+                    profile.equip();
+                }
+            });
+        }
+    }
+
+    public void loadOnJoin() {
+        if (menuItemEnabled && getBukkitPlayer().hasPermission("ultracosmetics.receivechest")) {
+            giveMenuItem();
+        }
+        if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
+            getProfile().onLoad(profile -> {
+                if (!loadApplied) {
+                    loadApplied = true;
+                    profile.equip();
+                }
+                if (!joinAlertPlayed) {
+                    playJoinAlert();
+                }
+            });
+        }
+    }
+
+    private void playJoinAlert() {
+        Cosmetic<?> cosmetic = getCosmetic(Category.JOIN_ALERTS);
+        if (!(cosmetic instanceof JoinAlert)) {
+            return;
+        }
+        joinAlertPlayed = true;
+        JoinAlertType type = ((JoinAlert) cosmetic).getType();
+        if (type != null) {
+            type.play(this, ultraCosmetics);
         }
     }
 
@@ -257,6 +295,10 @@ public class UltraPlayer {
 
     public Hat getCurrentHat() {
         return (Hat) getCosmetic(Category.HATS);
+    }
+
+    public JoinAlert getCurrentJoinAlert() {
+        return (JoinAlert) getCosmetic(Category.JOIN_ALERTS);
     }
 
     public Morph getCurrentMorph() {

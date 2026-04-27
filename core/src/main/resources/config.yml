@@ -9,6 +9,7 @@ Categories-Enabled:
   Pets: true
   Morphs: true
   Hats: true
+  Join-Alerts: true
   Suits: true
   Emotes: true
   Projectile-Effects: true
@@ -42,6 +43,9 @@ Categories:
     Go-Back-Arrow: true
   Hats:
     Main-Menu-Item: GOLDEN_HELMET
+    Go-Back-Arrow: true
+  Join-Alerts:
+    Main-Menu-Item: BELL
     Go-Back-Arrow: true
   Suits:
     Main-Menu-Item: LEATHER_CHESTPLATE
@@ -572,6 +576,52 @@ Item-Delay:
 # Whether UC should always unequip/reequip cosmetics when changing worlds.
 # Enable this if you use MV-Inventories or a similar plugin.
 Always-Update-Cosmetics-On-World-Change: false
+
+Join-Alerts:
+  RoyalEntry:
+    Enabled: true
+    Show-Description: true
+    Treasure-Chest-Weight: 0
+    Purchase-Price: 0
+    Icon: BELL
+    Display-Name: "<gold><bold>Royal Entry"
+    Description:
+      - "<gray>Broadcasts a premium welcome"
+      - "<gray>when you join the server."
+    Message: "<gold><player></gold> <yellow>acaba de entrar al servidor"
+    Chat:
+      Enabled: true
+      Message: "<message>"
+    ActionBar:
+      Enabled: false
+      Message: "<message>"
+    Sound:
+      Enabled: true
+      Type: ENTITY_PLAYER_LEVELUP
+      Volume: 1.0
+      Pitch: 1.15
+  Spotlight:
+    Enabled: true
+    Show-Description: true
+    Treasure-Chest-Weight: 0
+    Purchase-Price: 0
+    Icon: NOTE_BLOCK
+    Display-Name: "<yellow><bold>Spotlight"
+    Description:
+      - "<gray>Uses chat and actionbar"
+      - "<gray>with a stronger announcement."
+    Message: "<yellow><player></yellow> <white>entró al servidor"
+    Chat:
+      Enabled: true
+      Message: "<gold>[VIP]</gold> <message>"
+    ActionBar:
+      Enabled: true
+      Message: "<yellow>Bienvenido</yellow> <white><player>"
+    Sound:
+      Enabled: false
+      Type: ENTITY_PLAYER_LEVELUP
+      Volume: 1.0
+      Pitch: 1.0
 
 # The thousands separator to use when displaying money amounts.
 # Set to "" to disable.

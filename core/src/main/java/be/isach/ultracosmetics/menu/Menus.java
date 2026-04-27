@@ -39,6 +39,7 @@ public class Menus {
         categoryMenus.put(Category.GADGETS, new MenuGadgets(ultraCosmetics));
         categoryMenus.put(Category.EFFECTS, new MenuParticleEffects(ultraCosmetics));
         categoryMenus.put(Category.HATS, new MenuHats(ultraCosmetics));
+        categoryMenus.put(Category.JOIN_ALERTS, new MenuJoinAlerts(ultraCosmetics));
         categoryMenus.put(Category.MORPHS, new MenuMorphs(ultraCosmetics));
         categoryMenus.put(Category.MOUNTS, new MenuMounts(ultraCosmetics));
         categoryMenus.put(Category.PETS, new MenuPets(ultraCosmetics));
