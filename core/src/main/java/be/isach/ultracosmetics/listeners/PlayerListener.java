@@ -70,6 +70,7 @@ public class PlayerListener implements Listener {
         if (isNPC(event.getPlayer())) {
             return;
         }
+        event.setJoinMessage(null);
         UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
         if (SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
             runWhenValid(event.getPlayer(), joinItemDelay, ultraPlayer::loadOnJoin);
@@ -166,6 +167,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+        event.setQuitMessage(null);
         // Dispose even for NPCs, if we did accidentally allocate an UltraPlayer for an NPC, we don't want to be leaking
         // memory
         pm.getUltraPlayer(event.getPlayer()).dispose();

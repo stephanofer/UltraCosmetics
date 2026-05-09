@@ -124,6 +124,8 @@ testserver
 
 hts*
 
+.engram/
+
 # Ignore jar dependencies
 !core/*.jar
 !core/libs/*.jar
